@@ -1,3 +1,6 @@
+#David, Utsav, Daniel, Greg
+#v2
+
 print('Welcome to Cool School App. What would you like to do?'),
 print('1. Add Student'),
 print('2. Add Student Grade'),
@@ -9,81 +12,66 @@ student_records = [] #empty list to be filled with dictionarys of students and r
 
 def enter_task():
     
-    #return "hi"
+    name_input = "Enter students name:"
     
     task = input('Input Task Number:')
-
-    return recieve_task(task)
-
-def recieve_task(task):
-       
     if (task == "1"):
         #enter new students name: for input into records
-        user_input = input('Enter new students name:'), 1 #: (user input, input type)
+        user_input = input('Enter new students name:')
+
+        new_record = {'name': user_input, 'grades':[]}
+        student_records.append(new_record)
         
     if (task == "2"):
         #enter students name: for grade
-        user_input = input('Enter students name:'), 2 #: (user input, input type)
-        
-    if (task == "3"):
-        #enter new students name: to get student avg grade 
-        user_input = input('Enter students name:'), 3 #: (user input, input type)
-        
-    if (task == "4"):
-        #enter new students name: to remove student
-        user_input = input('Enter students name:'), 4 #: (user input, input type)
-    
-    if (task == "5"):
-        print ("Thanks for using Cool School App. Bye")
-    else:
-        do_something(user_input)
-        
-def do_something(recieved):
-    
-    if (recieved[1] == 1):
-        new_record = {'name': recieved[0], 'grades':[]}
-        student_records.append(new_record)
-    
-    if (recieved[1] == 2):
+        user_input = input(name_input)
         grade = input('Enter the student\'s grade. (Numbers 0-100 only)')
         grade = int(grade)
         for i in student_records:
-            if(i['name'] == recieved[0]):
+            if(i['name'] == user_input):
                 i['grades'].append(grade)
-    
-    if (recieved[1] == 3):
+        
+    if (task == "3"):
+        #enter new students name: to get student avg grade 
+        user_input = input(name_input)
         num = False
         k = 0
         for i in student_records:
-            if(i['name'] == recieved[0]):
+            if(i['name'] == user_input):
                 num = len(i['grades'])
                 if(num > 0):
                     avg = sum(i['grades'])/num
             
         if(num != False):
             if(num > 0):
-                print("The averge grade for {}\'s {} was {}".format(recieved[0], num, avg))
+                print("The averge grade for {}\'s {} grade(s) is {}".format(user_input, num, avg))
             else:
-                print("Looks like {} does not have any grades entered".format(recieved[0]))
+                print("Looks like {} does not have any grades entered".format(user_input))
         else:
-            print("No record of a student with the name \'{}\' was found".format(recieved[0]))
+            print("No record of a student with the name \'{}\' was found".format(user_input))
         
-
-    if (recieved[1] == 4):
+    if (task == "4"):
+        #enter new students name: to remove student
+        user_input = input(name_input)
         remove = False
         k = 0
         for i in student_records:
-            if(i['name'] == recieved[0]):
+            if(i['name'] == user_input):
                 remove = True
                 index = k
             k +=1
         if(remove != False):
             del student_records[index]
-            print("{} was removed from the student records".format(recieved[0]))
+            print("{} was removed from the student records".format(user_input))
         else:
-            print("No record of a student with the name \'{}\' was found.".format(recieved[0]))
+            print("No record of a student with the name \'{}\' was found.".format(user_input))
     
-    enter_task() # run it again
-           
-enter_task()
+    if (task == "5"):
+        print ("Thanks for using Cool School App. Bye")
+    else:
+        enter_task() # run it again
+
+        
+enter_task() #### initial run
+
 
